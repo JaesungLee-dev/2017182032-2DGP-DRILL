@@ -5,6 +5,7 @@ import os
 from pico2d import *
 
 import game_framework
+import pause_state
 
 name = "MainState"
 
@@ -71,28 +72,15 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_p:
-            if pause_mode == False:
-                pause_mode = True
-            else:
-                pause_mode = False
-            #game_framework.change_state(pause_state)
+            game_framework.push_state(pause_state)
 
 
 def update():
-    global time
-    if pause_mode == False:
-        boy.update()
-    else:
-        time += 1
-
+    boy.update()
 
 
 def draw():
-    global time
     clear_canvas()
-    if time > 30:
-        pause_image.draw(400,300)
-        time = 0
     grass.draw()
     boy.draw()
     update_canvas()

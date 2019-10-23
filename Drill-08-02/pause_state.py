@@ -26,5 +26,6 @@ def handle_events():
 
 def draw():
     clear_canvas()
+    main_state.draw()
     pause.draw(400,300,200,200)
     update_canvas()
